@@ -65,12 +65,30 @@ export class UserService {
     const permission8 = new Permission();
     permission8.name = 'query_bbb';
     permission8.desc = '查询bbb权限';
-    await this.entityManager.save(Permission, [permission1, permission2, permission3, permission4, permission5, permission6, permission7, permission8]);
+    await this.entityManager.save(Permission, [
+      permission1,
+      permission2,
+      permission3,
+      permission4,
+      permission5,
+      permission6,
+      permission7,
+      permission8,
+    ]);
 
     const user = new User();
     user.username = 'admin123';
     user.password = 'admin123';
-    user.permissions = [permission1, permission2, permission3, permission4, permission5, permission6, permission7, permission8];
+    user.permissions = [
+      permission1,
+      permission2,
+      permission3,
+      permission4,
+      permission5,
+      permission6,
+      permission7,
+      permission8,
+    ];
 
     const userA = new User();
     userA.username = 'user_aaa';
@@ -101,6 +119,14 @@ export class UserService {
       throw new HttpException('密码错误', HttpStatus.ACCEPTED);
     }
 
+    return user;
+  }
+
+  async findByUsername(username: string) {
+    const user = await this.entityManager.findOne(User, {
+      where: { username },
+      relations: ['permissions'],
+    });
     return user;
   }
 }
