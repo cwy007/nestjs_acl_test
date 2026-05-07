@@ -6,6 +6,7 @@ import { authPlugins } from 'mysql2';
 import { UserModule } from './user/user.module';
 import { AaaModule } from './aaa/aaa.module';
 import { BbbModule } from './bbb/bbb.module';
+import { RedisModule } from './redis/redis.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -26,7 +27,7 @@ import { BbbModule } from './bbb/bbb.module';
         sha256_password: authPlugins.sha256_password
       }
     }
-  }), UserModule, AaaModule, BbbModule],
+  }), UserModule, AaaModule, BbbModule, RedisModule],
   controllers: [AppController],
   providers: [AppService],
 })
