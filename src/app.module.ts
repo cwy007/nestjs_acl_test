@@ -14,7 +14,7 @@ import { UserModule } from './user/user.module';
     password: 'Cwy17824',
     database: 'acl_test',
     entities: [__dirname + '/**/*.entity{.ts,.js}'],
-    migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
+    // migrations: [__dirname + '/migrations/**/*{.ts,.js}'],
     synchronize: true, // Note: Set to false in production
     logging: true,
     poolSize: 10,

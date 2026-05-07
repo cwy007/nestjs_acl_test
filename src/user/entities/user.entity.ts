@@ -1,5 +1,6 @@
-import { Column, CreateDateColumn, Entity, UpdateDateColumn } from "typeorm";
-import { PrimaryGeneratedColumn } from "typeorm/browser";
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, UpdateDateColumn } from "typeorm";
+import { PrimaryGeneratedColumn } from "typeorm";
+import { Permission } from "./permission.entity";
 
 @Entity({
   comment: '用户表',
@@ -21,17 +22,18 @@ export class User {
   password: string;
 
   @CreateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
     comment: '创建时间',
   })
   createTime: Date;
 
   @UpdateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP',
-    onUpdate: 'CURRENT_TIMESTAMP',
     comment: '更新时间',
   })
   updateTime: Date;
+
+  @ManyToMany(() => Permission)
+  @JoinTable({
+    name: 'user_permissions_relation',
+  })
+  permissions: Permission[];
 }
