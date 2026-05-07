@@ -1,7 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ValidationPipe, Session } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import LoginDto from './dto/login.dto';
 
 @Controller('user')
 export class UserController {
@@ -11,6 +12,12 @@ export class UserController {
   initData() {
     console.log('Initializing data...');
     return this.userService.initData();
+  }
+
+  @Post('login')
+  async login(@Body() loginDto: LoginDto, @Session() session: Record<string, any>) {
+    console.log('Login attempt:', loginDto);
+    return 'Login successful';
   }
 
   @Post()
