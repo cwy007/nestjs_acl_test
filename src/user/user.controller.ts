@@ -5,7 +5,13 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Controller('user')
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
+
+  @Get('init-data')
+  initData() {
+    console.log('Initializing data...');
+    return this.userService.initData();
+  }
 
   @Post()
   create(@Body() createUserDto: CreateUserDto) {
