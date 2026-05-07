@@ -17,6 +17,11 @@ export class UserController {
   @Post('login')
   async login(@Body() loginDto: LoginDto, @Session() session: Record<string, any>) {
     console.log('Login attempt:', loginDto);
+    const user = await this.userService.login(loginDto);
+    session.user = {
+      username: user.username,
+    };
+
     return 'Login successful';
   }
 
