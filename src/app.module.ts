@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { authPlugins } from 'mysql2';
 import { UserModule } from './user/user.module';
+import { AaaModule } from './aaa/aaa.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -24,7 +25,7 @@ import { UserModule } from './user/user.module';
         sha256_password: authPlugins.sha256_password
       }
     }
-  }), UserModule],
+  }), UserModule, AaaModule],
   controllers: [AppController],
   providers: [AppService],
 })
